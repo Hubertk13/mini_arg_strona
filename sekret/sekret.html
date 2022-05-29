@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="login site">
+    <meta name="author" content="E Corp">
+    <link rel="icon" href="https://images.squarespace-cdn.com/content/v1/618bf212f2e0777ee00311d0/1643735360487-NRROQCEWCNRFYNLNGP6R/Evil_Corp_logo.png">
+    <title>E Corp login site</title>
+    <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="signin.css" rel="stylesheet">
+  </head>
+  <body class="text-center">
+    <script>
+    function data(){
+        var username = document.getElementById("inputUsername").value
+        var password = document.getElementById("inputPassword").value
+        if((btoa(username)=="cHJhY293bmlrMjc=" && btoa(password)=="QXZlcmFnZVJvY2t5b3VQYXNzd29yZA==")){
+          document.getElementById("inputUsername").value = ""
+          document.getElementById("inputPassword").value = ""
+          window.location.assign("wiekszy_sekret/index.html");
+        }
+        else{
+          alert("Błędny login lub hasło");
+        }
+      }
+    </script>
+    <form class="form-signin">
+      <img class="mb-4" src="https://images.squarespace-cdn.com/content/v1/618bf212f2e0777ee00311d0/1643735360487-NRROQCEWCNRFYNLNGP6R/Evil_Corp_logo.png" alt="" width="72" height="72">
+      <h1 class="h3 mb-3 font-weight-normal">Logowanie</h1>
+      <label for="inputUsername" class="sr-only">nazwa użytkownika</label>
+      <input type="text" id="inputUsername" class="form-control" placeholder="nazwa użytkownika" required autofocus>
+      <label for="inputPassword" class="sr-only">hasło</label>
+      <input type="password" id="inputPassword" class="form-control" placeholder="hasło" required>
+      <div class="checkbox mb-3">
+        <label>
+          <input type="checkbox" value="remember-me"> zapamiętaj mnie
+        </label>
+      </div>
+      <button class="btn btn-lg btn-primary btn-block" id="submit" type="submit" onclick="data()">zaloguj się</button>
+      <p class="mt-5 mb-3 text-muted">&copy; E Corp 2022</p>
+    </form>
+  </body>
+</html>

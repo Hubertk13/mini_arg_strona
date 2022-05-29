@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://unpkg.com/jquery.terminal/js/jquery.terminal.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/jquery.terminal/css/jquery.terminal.min.css"/>
+</head>
+<body>
+  <script>
+    var pliki = ['open.sh','linux.png','gif.gif','port_forward_https.sh','dane_logowania.txt','E_Corp_login.txt']
+$('body').terminal({
+    ls: function() {
+      for(let i = 0; i < pliki.length; i++){
+        this.echo(pliki[i]);
+      }
+    },
+    touch: function(file){
+      pliki.push(file)
+    },
+    rm: function(file){
+      if(file=="open.sh"){
+        this.echo('cannot remove \'open.sh\': not enough permission');
+      }
+      else if (file=="port-forward-https.sh"){
+          this.echo('cannot remove \'port_forward_https.sh\': not enough permission');
+      }
+      else if (file=="dane_logowania.txt"){
+          this.echo('cannot remove \'dane_logowania.txt\': not enough permission');
+      }
+      else if (file=="E_Corp_login.txt"){
+          this.echo('cannot remove \'dane_logowania.txt\': not enough permission');
+      }
+      else{
+        var index = $.inArray(file, pliki);
+        if (index != -1) {
+          pliki.splice(index, 1);
+          }
+      }
+    },
+    help: function(){
+      this.echo('available commands:\nhelp\nls\nopen [file]\ntouch [file]\nwhoami\nclear\nrm [file]\nport_forward_https [ip] [login] [password]');
+    },
+    whoami: function(){
+      this.echo('guest');
+    },
+    port_forward_https: function(ip, login, password){
+        if(ip=="192.134.24.2" && login=="root" && password=="letmein"){
+          location.href = 'sekret/sekret.html';
+        }
+        else{
+          this.echo('invalid credentials');
+        }
+    },
+    open: function(file) {
+      if(file == "linux.png"){
+        if(pliki.includes("linux.png")){
+            this.echo($('<img src="https://upload.wikimedia.org/wikipedia/commons/d/dd/Linux_logo.jpg">'));
+        }
+        else{
+          this.echo('\''+file+'\''+' not found');
+        }
+      }
+      else if(file=="gif.gif"){
+        if(pliki.includes("gif.gif")){
+            this.echo($('<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Rotating_earth_%28large%29.gif/240px-Rotating_earth_%28large%29.gif">'));
+        }
+        else{
+          this.echo('\''+file+'\''+' not found');
+        }
+      }
+      else if(file=="dane_logowania.txt"){
+          this.echo('ip: 192.134.24.2\nlogin: root\npassword: letmein');
+      }
+      else if(file=="E_Corp_login.txt"){
+          this.echo('login: pracownik27\npassword: AverageRockyouPassword');
+      }
+      else{
+        if(pliki.includes(file)){
+          this.echo('cannot open \''+file+'\'');
+        }
+        else{
+          this.echo('\''+file+'\''+' not found');
+        }
+      }
+      }},
+      {
+    greetings: 'Linux raspberrypi 5.10.17-v7+ #1414 SMP Fri Apr 30 13:18:35 BST 2021 armv7l\n\nThe programs included with the Debian GNU/Linux system are free software;\nthe exact distribution terms for each program are described in the\nindividual files in /usr/share/doc/*/copyright.\nDebian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent\npermitted by applicable law.\nLast login: Thu May 19 14:55:55 2022\n\nSSH is enabled and the default password for the \'pi\' user has not been changed.\n(jezeli nie wiesz co sie dzieje, polecam wpisac \'help\')'
+}
+);
+</script>
+</body>
+</html>
